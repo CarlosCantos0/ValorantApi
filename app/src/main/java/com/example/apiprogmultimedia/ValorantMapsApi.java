@@ -1,18 +1,16 @@
 package com.example.apiprogmultimedia;
 
-import android.util.JsonReader;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class ValorantMapsApi {
-    void getValorantMaps() throws IOException {
+    ArrayList<ValorantMaps> getValorantMaps() throws IOException {
         String url = "https://valorant-api.com/v1/maps";
 
         try {
@@ -40,5 +38,6 @@ public class ValorantMapsApi {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return getValorantMaps();
     }
 }
