@@ -8,7 +8,7 @@ public class ValorantMaps implements Serializable {
     private String coordinates;
     private String lv_mapIcon;
     private String mapImage;
-    private String detailsURL;
+    private String uuid;
 
     public String getName() {
         return name;
@@ -42,12 +42,12 @@ public class ValorantMaps implements Serializable {
         this.mapImage = mapImage;
     }
 
-    public String getDetailsURL() {
-        return detailsURL;
+    public String getUuid() {
+        return uuid;
     }
 
-    public void setDetailsURL(String detailsURL) {
-        this.detailsURL = detailsURL;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class ValorantMaps implements Serializable {
                 ", coordinates='" + coordinates + '\'' +
                 ", lv_mapIcon='" + lv_mapIcon + '\'' +
                 ", mapImage='" + mapImage + '\'' +
-                ", detailsURL='" + detailsURL + '\'' +
+                ", detailsURL='" + uuid + '\'' +
                 '}';
     }
 }

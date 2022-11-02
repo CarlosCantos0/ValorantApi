@@ -28,7 +28,7 @@ public class ValorantMapsApi {
                 ValorantMaps mapa = new ValorantMaps();
                 mapa.setName(mapaJson.getString("displayName"));
                 mapa.setCoordinates(mapaJson.getString("coordinates"));
-                mapa.setLv_mapIcon(mapaJson.getString("listViewIcon"));
+                //mapa.setLv_mapIcon(mapaJson.getString("listViewIcon"));
 
                 mapasValorant.add(mapa);
             }
