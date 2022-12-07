@@ -1,8 +1,6 @@
 package com.example.apiprogmultimedia;
 
-import java.io.Serializable;
-
-public class ValorantMaps implements Serializable {
+public class Mapas {
 
     private String name;
     private String coordinates;

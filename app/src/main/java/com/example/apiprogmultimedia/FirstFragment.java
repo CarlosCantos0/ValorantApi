@@ -5,9 +5,13 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,12 +24,10 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import javax.crypto.Cipher;
-
 public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
-    private ArrayAdapter<ValorantMaps> adapter;
+    private ArrayAdapter<Mapas> adapter;
 
     @Override
     public View onCreateView(
@@ -39,11 +41,12 @@ public class FirstFragment extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        ArrayList<ValorantMaps> items = new ArrayList<>();
+        ArrayList<Mapas> items = new ArrayList<>();
 
-        adapter = new ArrayAdapter<ValorantMaps>(
+        adapter = new ArrayAdapter<Mapas>(
                 getContext(),
                 R.layout.lv_valorantapi,
+                R.id.txtMapa,
                 items
         );
 
@@ -51,39 +54,51 @@ public class FirstFragment extends Fragment {
 
         refresh();
 
-        MapaViewModel viewModel = new ViewModelProvider(getActivity()).get(MapaViewModel.class);
-        viewModel.getMapas().observe(getActivity(), mapas -> {
-            adapter.clear();
-            adapter.addAll(mapas);
-        });
+        //MapaViewModel viewModel = new ViewModelProvider(getActivity()).get(MapaViewModel.class);
+        //viewModel.getMapas().observe(getActivity(), mapas -> {
+        //    adapter.clear();
+        //    adapter.addAll(mapas);
+        //});
 
         super.onViewCreated(view, savedInstanceState);
     }
 
-    private void refresh() {
+    //public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    //    super.onCreateOptionsMenu(menu, inflater);
+    //    inflater.inflate(R.menu.menu_main, menu);
+    //}
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            refresh();
+           // return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    void refresh() {
+        Toast.makeText(getContext(),"Refrescando..", Toast.LENGTH_LONG).show();
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Handler handler = new Handler(Looper.getMainLooper());
 
         executor.execute(() -> {
-            ValorantMapsApi api = new ValorantMapsApi();
-            String result = null;
+            MapasApi api = new MapasApi();
             try {
-                result = String.valueOf(api.getValorantMaps());
+                ArrayList<Mapas> mapas = api.getValorantMaps();
+                System.out.println(mapas);
+
+                handler.post(() -> {
+                    adapter.clear();
+                    adapter.addAll(mapas);
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            String finalResult = result;
-            handler.post(() -> {
-                adapter.clear();
-                for (ValorantMaps mapas: Mapas) {
-                    adapter.add(mapas;
-                }
-
-                    Log.d("DEBUG", finalResult);
-
-
-                });
+        });
     }
 
     @Override

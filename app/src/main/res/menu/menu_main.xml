@@ -4,7 +4,19 @@
     tools:context="com.example.apiprogmultimedia.MainActivity">
     <item
         android:id="@+id/action_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orderInCategory="100"
         android:title="@string/action_settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/ic_baseline_refresh_24"
+        android:orderInCategory="100"
+        android:title="@string/action_refresh"
+        android:visible="true"
         app:showAsAction="never" />
 </menu>

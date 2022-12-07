@@ -12,22 +12,26 @@ import com.bumptech.glide.Glide;
 
 import androidx.annotation.NonNull;
 
-public class MapasAdapter extends ArrayAdapter<ValorantMaps> {
+public class MapasAdapter extends ArrayAdapter<Mapas> {
     public MapasAdapter(@NonNull Context context, int resource) {
+
         super(context, resource);
     }
+
+    //private FragmentLvMapasBinding binding;
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        ValorantMaps mapas = getItem(position);
+        Mapas mapas = getItem(position);
         Log.w("XXXX", mapas.toString());
 
         //lvMapasRowBinding binding = null;
 
         if(convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.lv_valorantapi, parent, false);
+//            binding = lvMapasRowBinding.inflate(LayoutInflater.from(getContext()), parent, false);
+  //          convertView = binding.getRoot();
+    //        convertView.setTag(binding);
         }
 
         TextView txtMapa = convertView.findViewById(R.id.txtMapa);
